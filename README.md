@@ -158,7 +158,7 @@ The getCalls command allows you to return a list of CDRs for a given number of C
 >>> print calls.getCalls(limit=1)
 [{u'src': u'44xxxxxxxxxx', u'billed_duration': u'0.2333333', u'call_duration': u'0.2333333', 
   u'ts': u'2017-02-07T12:10:57Z', u'sid': u'xxxxxxx', u'type': u'call-in', u'dst': u'44xxxxxxxxxx'}]
->>> calls.getCalls(start="2017-02-07 12:00:00", end="2017-02-07 13:00:00")
+>>> calls.getCalls(start="2017-02-07 11:00:00", end="2017-02-07 13:00:00")
 [{u'src': u'44xxxxxxxxxx', u'billed_duration': u'0.2333333', u'call_duration': u'0.2333333', 
   u'ts': u'2017-02-07T12:10:57Z', u'sid': u'xxxxxxx', u'type': u'call-in', u'dst': u'44xxxxxxxxxx'}, 
   {u'src': u'44xxxxxxxxx', u'billed_duration': u'20.4000000', u'call_duration': u'20.5333333', 
