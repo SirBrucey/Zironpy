@@ -1,6 +1,6 @@
 from .ziron import Ziron
 
-class Account(Ziron):
+class Accounts(Ziron):
   # Accounts
   # https://zironuk.atlassian.net/wiki/display/docs/Accounts+API
   def getAccount(self, key=None):
@@ -21,5 +21,5 @@ class Account(Ziron):
     Args:
       data - Dictionary of fields you wish to change and the new values.
     """
-    return self.__request(self._base_url, "PUT", data)
+    return self._request(self._base_url, "PUT", data)
 
