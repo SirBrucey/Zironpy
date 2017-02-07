@@ -9,8 +9,8 @@ class Calls(Ziron):
     Args:
       limit  - Number of results to be returned. Default = 100. If Limit = all
                get all CDRs
-      start  - 
-      end    -
+      start  - Datetime to signify the start of the daterange you wish to return.
+      end    - Datetime to signify the end of the daterange you wish to return.
 
     Todo:
       Add ability to get all call data within a Datetime
@@ -20,7 +20,7 @@ class Calls(Ziron):
 
     # Default return 100 records
     if (not limit) and (not start) and (not end):
-      return self._request(url, "GET")
+      return self._request(url, "GET")['result']
 
     if not isinstance(limit, int):
       # Get all records
@@ -45,6 +45,6 @@ class Calls(Ziron):
       if limit <= 100 and limit > 0:
         return self._request(url+"?limit="+str(limit), "GET")['result']
       elif limit > 100:
-        return self._pagination_limit(url, method, limit)
+        return self._pagination_limit(url, method, limit)['result']
       else:
         raise ValueError("Limit Must be an integer greater than 0")
