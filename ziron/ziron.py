@@ -61,14 +61,14 @@ class Ziron(object):
       A list of records in disctionary format
     """
     results = []
-    _page = self.__request(url, method)
+    _page = self._request(url, method)
     _page_number = 1
     _total_pages = _page['meta']['last_page']
 
     results = _page['result']
 
     while _page_number < _total_pages:
-      _page = self.__request(url + "?offset=" + str(_page_number*100), method)
+      _page = self._request(url + "?offset=" + str(_page_number*100), method)
       _page_number += 1
 
       if limit:
@@ -112,7 +112,7 @@ class Ziron(object):
     if end: time.strptime(end, "%Y-%m-%d %H:%M:%S")
 
     results = []
-    _page = self.__request(url, method)
+    _page = self._request(url, method)
     _page_number = 1
     _total_pages = _page['meta']['last_page']
 
@@ -132,7 +132,7 @@ class Ziron(object):
         break
 
       # Move on to next page in loop
-      _page = self.__request(url + "?offset=" + str(_page_number*100), method)
+      _page = self._request(url + "?offset=" + str(_page_number*100), method)
       _page_number += 1
 
     return results

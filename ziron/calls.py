@@ -20,21 +20,21 @@ class Calls(Ziron):
 
     # Default return 100 records
     if (not limit) and (not start) and (not end):
-      return self.__request(url, "GET")
+      return self._request(url, "GET")
 
     if not isinstance(limit, int):
       # Get all records
       if (limit == "all"):
-        return self.__pagination_limit(url, method, "all")
+        return self._pagination_limit(url, method, "all")
 
       # Get records within date range
       elif start or end:
         if start and end:
-          return self.__pagination_range(url, method, start=start, end=end)
+          return self._pagination_range(url, method, start=start, end=end)
         elif start:
-          return self.__pagination_range(url, method, start=start)
+          return self._pagination_range(url, method, start=start)
         elif end:
-          return self.__pagination_range(url, method, end=end)
+          return self._pagination_range(url, method, end=end)
         else:
           raise ValueError("Unknown time constraints")
 
@@ -43,10 +43,8 @@ class Calls(Ziron):
 
     else:
       if limit <= 100 and limit > 0:
-        return self.__request(url+"?limit="+str(limit), "GET")
+        return self._request(url+"?limit="+str(limit), "GET")['result']
       elif limit > 100:
-        return self.__pagination_limit(url, method, limit)
+        return self._pagination_limit(url, method, limit)
       else:
         raise ValueError("Limit Must be an integer greater than 0")
-
-
