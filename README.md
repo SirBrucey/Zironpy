@@ -8,13 +8,29 @@
 * [Commands](#commands)
   * [Accounts](#accounts)
     * [getAccount](#getAccount)
+    * [updateAccount](#updateAccount)
+  * [Balance](#balance)
+    * [getBalance](#getBalance)
+  * [Calls](#calls)
+  * [End Points](#endpoints)
+  * [Messages](#messages)
+  * [Number Range Lookups](#nrl)
+  * [Numbering](#numbering)
+  * [Payments](#payments)
+  * [Pricing](#pricing)
+  * [Resources](#resources)
+  * [Transactions](#transactions)
+  * [Trunks](#trunks)
+
 <a name="setup"/>
 # Setup
 
 <a name="installtion"/>
 ## Installation
+
 <a name="testing"/>
 ## Testing
+
 <a name="commands"/>
 # Commands
 
@@ -59,7 +75,7 @@ The getAccount command returns currently set details about your account.
 >>> print accounts.getAccount('currency')
 GBP
 ```
-
+<a name="updateAccount"/>
 ### updateAccount(*data*)
 
 The update command take a dictionary of the account values you wish to update.
@@ -79,6 +95,7 @@ The update command take a dictionary of the account values you wish to update.
 ```
 
 ---
+<a name"balance"/>
 ## Balance
 
 The balance API allows you to your current account balance.
@@ -90,6 +107,7 @@ The balance API allows you to your current account balance.
 >>> balance = Balance(sid, auth_token)
 ```
 
+<a name="getBalance"/>
 ### getBalance()
 
 The getBalance command returns your accounts current balance and the ISO 4217 currency code.
@@ -107,23 +125,33 @@ The getBalance command returns your accounts current balance and the ISO 4217 cu
 {u'currency': u'GBP', u'balance': u'100.00000'}
 ```
 ---
+<a name="calls"/>
 ## Calls
 ---
+<a name="endpoints"/>
 ## End Points
 ---
+<a name="messages"/>
 ## Messages
 ---
+<a name="nrl"/>
 ## Number Range Lookups
 ---
+<a name="numbering"/>
 ## Numbering
 ---
+<a name="payments"/>
 ## Payments
 ---
+<a name="pricing"/>
 ## Pricing
 ---
+<a name="resources"/>
 ## Resources
 ---
+<a name="transactions"/>
 ## Transactions
 ---
+<a name="trunks"/>
 ## Trunks
 ---
