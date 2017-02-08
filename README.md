@@ -28,6 +28,10 @@
     * [getMessageHistory](#getMessageHistory)
     * [messageDeliveryStatistics](#messageDeliveryStatistics)
   * [Number Range Lookups](#nrl)
+    * [HLRLookup](#HLRLookup)
+    * [numberPortabilityLookup](#numberPortabilityLookup)
+    * [getlookups](#getLookups)
+    * [getIndividualLookup](#getIndividualLookup)
   * [Numbering](#numbering)
   * [Payments](#payments)
   * [Pricing](#pricing)
@@ -43,6 +47,7 @@
     * [getCalls](#getCalls)
     * [getEndpoints](#getEndpoints)
     * [getMessages](#getMessages)
+    * [getlookups](#getLookups)
 
 <a name="setup"/>
 # Setup
@@ -492,6 +497,47 @@ Get a list of message statistics for the last 24 hours.
 ---
 <a name="nrl"/>
 ## Number Range Lookups
+
+The Lookups API allows you to use a range of Number Lookup services.
+> https://zironuk.atlassian.net/wiki/display/docs/Lookups+API
+
+**Import**:
+
+```python 
+>>> from ziron import NumberRangeLookups
+>>> nrl = NumberRangeLookups(sid, auth_token)
+```
+
+<a name="HLRLookup"/>
+### HLRLookup(*lookup_type*, *number*)
+
+The HLR Lookup service allows you to query the mobile network for a range of subscriber 
+
+information, and can be used for mobile number validation, porting  check, and 
+
+roaming status.
+
+> https://zironuk.atlassian.net/wiki/display/docs/HLR+Lookup
+
+**Arguments:**
+
+* Required:
+  * lookup_type - Type of lookup to perform.  
+⋅⋅⋅ Valid values: get_country, hashed_imsi, home_network.
+  * number - The number to lookup. E164 format.
+* Optional: None
+
+#### Note: *get_country and hashed_imsi are restricted by default*
+
+**Examples:**
+
+```python
+>>> nlr.HLRLookup('home_network','44xxxxxxxxxx')
+{u'status': u'success', u'network': u'Foo 3G', 
+ u'sid': u'NLeaf71cd334b586f9cbc2d769165402e6', u'mcc': u'234', 
+ u'number': u'44xxxxxxxxxx', u'mccmnc': u'234xx', u'country_iso': u'gb', u'mnc': u'xx'}
+```
+
 ---
 <a name="numbering"/>
 ## Numbering
