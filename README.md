@@ -511,10 +511,8 @@ The Lookups API allows you to use a range of Number Lookup services.
 <a name="HLRLookup"/>
 ### HLRLookup(*lookup_type*, *number*)
 
-The HLR Lookup service allows you to query the mobile network for a range of subscriber 
-
-information, and can be used for mobile number validation, porting  check, and 
-
+The HLR Lookup service allows you to query the mobile network for a range of subscriber  
+information, and can be used for mobile number validation, porting  check, and  
 roaming status.
 
 > https://zironuk.atlassian.net/wiki/display/docs/HLR+Lookup
@@ -523,7 +521,7 @@ roaming status.
 
 * Required:
   * lookup_type - Type of lookup to perform.  
-⋅⋅⋅ Valid values: get_country, hashed_imsi, home_network.
+    Valid values: get_country, hashed_imsi, home_network.
   * number - The number to lookup. E164 format.
 * Optional: None
 
