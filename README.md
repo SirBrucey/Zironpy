@@ -2,6 +2,7 @@
 
 # Contents
 
+* [Todo](#todo)
 * [Setup](#setup)
   * [Installation](#installation)
   * [Testing](#testing)
@@ -12,7 +13,7 @@
   * [Balance](#balance)
     * [getBalance](#getBalance)
   * [Calls](#calls)
-      * [getCalls](#getCalls)
+    * [getCalls](#getCalls)
   * [End Points](#endpoints)
     * [createEndpoint](#createEndpoint)
     * [deleteEndpoint](#deleteEndpoint)
@@ -23,7 +24,7 @@
   * [Messages](#messages)
     * [sendMessage](#sendMessage)
     * [getMessages](#getMessages)
-    * [getIndividualMessager](#getIndividualMessage)
+    * [getIndividualMessage](#getIndividualMessage)
     * [getMessageHistory](#getMessageHistory)
     * [messageDeliveryStatistics](#messageDeliveryStatistics)
   * [Number Range Lookups](#nrl)
@@ -33,6 +34,15 @@
   * [Resources](#resources)
   * [Transactions](#transactions)
   * [Trunks](#trunks)
+
+<a name="todo"/>
+# TODO
+* Rewrite Pagination
+
+  Places currentluing pagination or will be later:
+    * [getCalls](#getCalls)
+    * [getEndpoints](#getEndpoints)
+    * [getMessages](#getMessages)
 
 <a name="setup"/>
 # Setup
@@ -371,7 +381,7 @@ including delivery reports.
 Send a message to one or more recipients. Returns an unpaginated list of message details.
 > https://zironuk.atlassian.net/wiki/display/docs/Send+a+Message
 
-**Arguments**
+**Arguments:**
 * Required:
   * src - Source number or name.
   * dest - Destination number.
@@ -396,10 +406,51 @@ Send a message to one or more recipients. Returns an unpaginated list of message
 ```
   
 <a name="getMessages"/>
-### getMessages()
+### getMessages(*limit*, *start*, *end*)
 
-<a name="getIndividualMessages"/>
-### getIndividualMessage()
+#### Needs redoing
+
+The getMessages command returns a list of messages.
+> https://zironuk.atlassian.net/wiki/display/docs/Get+Messages
+
+**Arguments:**
+* Required: None
+* Optional: 
+  * limit - Either 1-100 or "all", limit the number number of results returned, 
+            if all return all CDRs ever.
+  * start - Datetime in the form YYYY-MM-DD HH-MM-SS to signify the start of 
+            the daterange you wish to return.
+  * end - Datetime in the form YYYY-MM-DD HH-MM-SS to signify the end of the daterange 
+          you wish to return.
+
+**Examples:**
+
+```python
+
+```
+
+<a name="getIndividualMessage"/>
+### getIndividualMessage(*sid*, *key*)
+
+Return information on an individual message.
+> https://zironuk.atlassian.net/wiki/display/docs/Get+an+Individual+Message
+
+**Arguments:**
+
+* Required: 
+  * sid - Unique ID for the message you wish to retrieve the information on.
+* Optional:
+  * key - Return an individual value from the dictionary.
+
+**Examples:**
+
+```python
+>>> messages.getIndividualMessage("SMb2887b44ddda90ebdfb51e6331435abf")
+{u'status': u'delivered', u'src': u'447599440428', u'data': u'Testing', u'dst': u'447599440428', u'charset': None, u'ts': u'2017-02-08T10:50:32Z', u'parts': u'1', u'sid': u'SMb2887b44ddda90ebdfb51e6331435abf', u'type': u'sms-out'}
+
+>>> messages.getIndividualMessage("SMb2887b44ddda90ebdfb51e6331435abf", "data")
+u'Testing'
+```
 
 <a name="getMessageHistory"/>
 ### getMessageHistory()

@@ -56,9 +56,21 @@ class Messages(Ziron):
     return self._request(self._base_url+"/Messages", "POST", post)
 
   def getMessages(self):
+    # Needs doing once pagination has been rewritten
     return
-  def getIndividualMessage(self):
-    return
+
+  def getIndividualMessage(self, message_sid, key=None):
+    """Returns information on a single messgae
+    
+    Args: 
+      message_sid - Individual sid for the message you with to retrieve information on.
+      key         - Retunrn specific value based on given key.
+    """
+    if not key:
+      return self._request(self._base_url+"/Messages/"+message_sid, "GET")
+    else:
+      return self._request(self._base_url+"/Messages/"+message_sid, "GET")[key]
+ 
   def getMessageHistory(self):
     return
   def messageDeliveryStats(self):
