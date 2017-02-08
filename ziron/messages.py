@@ -71,8 +71,16 @@ class Messages(Ziron):
     else:
       return self._request(self._base_url+"/Messages/"+message_sid, "GET")[key]
  
-  def getMessageHistory(self):
-    return
+  def getMessageHistory(self, message_sid):
+    """Return a list of message statuses for a given message. SMS only.
+
+    Args:
+      message_sid - Unique ID for the message you wish to retrieve the message history 
+                    for.
+    """
+
+    return self._request(self._base_url+"/Messages/"+message_sid+"/History", "GET")
+
   def messageDeliveryStats(self):
     return
 

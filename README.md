@@ -453,7 +453,23 @@ u'Testing'
 ```
 
 <a name="getMessageHistory"/>
-### getMessageHistory()
+### getMessageHistory(*sid*)
+
+Return a list of message statuses. SMS only.
+> https://zironuk.atlassian.net/wiki/display/docs/Get+Message+History
+
+**Arguments:** 
+
+* Required:
+  * sid - Unique ID for the message you wish to retrieve the message history for.
+* Optional: None
+
+**Examples:**
+
+```python
+>>> messages.getMessageHistory("SMb2887b44ddda90ebdfb51e6331435abf")
+[{u'status': u'submitted', u'ts': u'2017-02-08T10:50:32Z'}, {u'status': u'delivered', u'ts': u'2017-02-08T10:50:33Z'}]
+```
 
 <a name="messageDeliveryStats"/>
 ### messageDeliveryStats()
