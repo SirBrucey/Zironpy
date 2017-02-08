@@ -474,6 +474,21 @@ Return a list of message statuses. SMS only.
 <a name="messageDeliveryStats"/>
 ### messageDeliveryStats()
 
+Get a list of message statistics for the last 24 hours.
+> https://zironuk.atlassian.net/wiki/display/docs/Message+Delivery+Statistics
+
+**Arguments:**
+
+* Required: None
+* Optional: None
+
+**Examples:**
+
+```python
+>>> messages.messageDeliveryStats()
+[{u'status': u'delivered', u'count': u'6', u'percent': u'6.8182'}]
+```
+
 ---
 <a name="nrl"/>
 ## Number Range Lookups

@@ -82,5 +82,10 @@ class Messages(Ziron):
     return self._request(self._base_url+"/Messages/"+message_sid+"/History", "GET")
 
   def messageDeliveryStats(self):
-    return
+    """Get a list of message statistics for the last 24 hours.
+
+    Args: None
+    """
+
+    return self._request(self._base_url+"/Messages/Status/Summary", "GET")
 
