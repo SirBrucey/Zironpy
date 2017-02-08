@@ -12,7 +12,7 @@
   * [Balance](#balance)
     * [getBalance](#getBalance)
   * [Calls](#calls)
-    * [getCalls](#getCalls)
+      * [getCalls](#getCalls)
   * [End Points](#endpoints)
     * [createEndpoint](#createEndpoint)
     * [deleteEndpoint](#deleteEndpoint)
@@ -21,6 +21,11 @@
     * [getIndividualEndpoint](#getIndividualEndpoint)
     * [updateIndividualEndpoint](#updateIndividualEndpoint)
   * [Messages](#messages)
+    * [sendMessage](#sendMessage)
+    * [getMessages](#getMessages)
+    * [getIndividualMessager](#getIndividualMessage)
+    * [getMessageHistory](#getMessageHistory)
+    * [messageDeliveryStatistics](#messageDeliveryStatistics)
   * [Number Range Lookups](#nrl)
   * [Numbering](#numbering)
   * [Payments](#payments)
@@ -350,6 +355,58 @@ u'type': u'sms'}
 ---
 <a name="messages"/>
 ## Messages
+
+The Messages API allows you to send messages and retrieve details of existing messages, 
+including delivery reports.
+> https://zironuk.atlassian.net/wiki/display/docs/Messages+API
+
+**Import:**
+```python
+>>> from ziron import Messages
+>>> messages = Messages(sid, auth_token)
+```
+<a name="sendMessage"/>
+### sendMessage(*src*, *dest*, *data*, *message_type*, *mclass*, *mwi*, *callback_url*)
+
+Send a message to one or more recipients. Returns an unpaginated list of message details.
+> https://zironuk.atlassian.net/wiki/display/docs/Send+a+Message
+
+**Arguments**
+* Required:
+  * src - Source number or name.
+  * dest - Destination number.
+  * data - Message body.
+* Optional:
+  * message_type - Type of message, defaults to 'sms'
+  * mclass - Sets the message class in the DCS field (SMS only), 0-3, 
+    i.e. 0 (flash SMS), 1 (mobile), 2 (SIM), 3 (SIM toolkit).
+  * mwi - Activate/deactivate the message waiting indicator (SMS only), 0-7, 
+    i.e. 0 (activate voicemail), 1 (activate fax), 2 (activate email), 
+    3 (activate other), 4 (deactivate voicemail), 5 (deactivate fax), 
+    6 (deactivate email), 7 (deactivate other).
+  * callback_url - URL to receive message status callbacks.
+
+**Examples:**
+
+```python
+>>> messages.sendMessage("44xxxxxxxxxx", "44xxxxxxxxxx", "Testing")
+[{u'status': u'queued', u'src': u'44xxxxxxxxxx', u'data': u'Testing', 
+  u'dst': u'44xxxxxxxxxx', u'charset': None, u'ts': u'2017-02-08T10:50:32Z', 
+  u'parts': u'1', u'sid': u'SMb2887b44ddda90ebdfb51e6331435abf', u'type': u'sms-out'}]
+```
+  
+<a name="getMessages"/>
+### getMessages()
+
+<a name="getIndividualMessages"/>
+### getIndividualMessage()
+
+<a name="getMessageHistory"/>
+### getMessageHistory()
+
+<a name="messageDeliveryStats"/>
+### messageDeliveryStats()
+
 ---
 <a name="nrl"/>
 ## Number Range Lookups

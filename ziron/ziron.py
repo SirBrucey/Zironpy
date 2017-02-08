@@ -143,3 +143,15 @@ class Ziron(object):
       raise ValueError(error)
     return
 
+  def _check_e164(self, number):
+    if not re.match(r'^\+?[1-9]\d{1,14}$', number):
+      error = "Invalid number. Number does not match E164 specification"
+      raise ValueError(error)
+    return True
+
+  def _check_alphanumeric(self, number, length):
+    if not re.match('^[a-zA-Z0-9]{1,'+str(length)+'}$', number):
+      error = "Invalid Alphanumeric string of length " + str(length)
+      raise ValueError(error)
+    return True
+
