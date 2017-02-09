@@ -559,6 +559,18 @@ Performs a Number Portability lookup on a number.
 #### Note: In testing I have been unable to get a sucessful response for this command.  
 All tests have returned as "NO_DATA"
 
+### getLookups()
+
+#### Note: Complete command once pagination is redone.
+
+The getLookups command returns a list of all lookups.
+> https://zironuk.atlassian.net/wiki/display/docs/Get+Lookups
+
+**Arguments:**
+
+**Examples:**
+
+
 ---
 <a name="numbering"/>
 ## Numbering

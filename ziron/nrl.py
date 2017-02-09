@@ -41,6 +41,7 @@ class NumberRangeLookups(Ziron):
     return self._request(self._base_url+"/Lookups/NP", "POST", data)
 
   def getLookups(self):
+    # Not implementing at present, will implement once pagination is reworked.
     return
   def getIndividualLookup(self):
     return
