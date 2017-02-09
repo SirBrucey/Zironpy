@@ -559,6 +559,7 @@ Performs a Number Portability lookup on a number.
 #### Note: In testing I have been unable to get a sucessful response for this command.  
 All tests have returned as "NO_DATA"
 
+<a name="getLookups"/>
 ### getLookups()
 
 #### Note: Complete command once pagination is redone.
@@ -570,6 +571,7 @@ The getLookups command returns a list of all lookups.
 
 **Examples:**
 
+<a name="getIndividualLookup"/>
 ### getIndividualLookup(*sid*)
 
 Return information on an individual lookup.
