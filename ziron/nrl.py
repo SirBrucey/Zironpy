@@ -43,6 +43,17 @@ class NumberRangeLookups(Ziron):
   def getLookups(self):
     # Not implementing at present, will implement once pagination is reworked.
     return
-  def getIndividualLookup(self):
-    return
+
+  def getIndividualLookup(self, lookup_sid, key=None):
+    """Returns information on a single lookup
+    
+    Args: 
+      lookup_sid - Individual sid for the endpoint you with to retrieve information on.
+      key        - Retunrn specific value based on given key.
+    """
+    if not key:
+      return self._request(self._base_url+"/Lookups/"+lookup_sid, "GET")
+    else:
+      return self._request(self._base_url+"/Lookups/"+lookup_sid, "GET")[key]
+
 

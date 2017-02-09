@@ -570,6 +570,29 @@ The getLookups command returns a list of all lookups.
 
 **Examples:**
 
+### getIndividualLookup(*sid*)
+
+Return information on an individual lookup.
+> 
+
+**Arguments:**
+
+* Required:
+  * sid - Unique ID for the lookup you wish to retrieve the information on.
+* Optional:
+  * key - Return an individual value from the dictionary.
+
+**Examples:**
+
+```python
+>>> nlr.getIndividualLookup('NLeaf71cd334b586f9cbc2d769165402e6')
+{u'status': u'success', u'network': u'Foo 3G',
+ u'sid': u'NLeaf71cd334b586f9cbc2d769165402e6', u'mcc': u'234',
+ u'number': u'44xxxxxxxxxx', u'mccmnc': u'234xx', u'country_iso': u'gb', u'mnc': u'xx'}
+
+>>> nlr.getIndividualLookup('NLeaf71cd334b586f9cbc2d769165402e6','country_iso')
+u'gb'
+```
 
 ---
 <a name="numbering"/>
