@@ -535,6 +535,29 @@ roaming status.
  u'sid': u'NLeaf71cd334b586f9cbc2d769165402e6', u'mcc': u'234', 
  u'number': u'44xxxxxxxxxx', u'mccmnc': u'234xx', u'country_iso': u'gb', u'mnc': u'xx'}
 ```
+<a name="numberPortabilityLookup"/>
+### numberPortabilityLookup(*number*)
+
+#### *BETA*
+
+Performs a Number Portability lookup on a number.
+> https://zironuk.atlassian.net/wiki/display/docs/Number+Portability+Lookup
+
+**Arguments:**
+* Required: 
+  * number - The number to lookup. E164 format.
+* Optional: None
+
+**Examples:**
+
+```python
+>>> nlr..numberPortabilityLookup('44xxxxxxxxxx')
+{u'status': u'NO_DATA', u'number': u'44xxxxxxxxxx', 
+ u'sid': u'NLd705ce91ca65055384fb820c643b7045'}
+```
+
+#### Note: In testing I have been unable to get a sucessful response for this command.  
+All tests have returned as "NO_DATA"
 
 ---
 <a name="numbering"/>

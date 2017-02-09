@@ -25,8 +25,21 @@ class NumberRangeLookups(Ziron):
 
     return self._request(self._base_url + "/Lookups/HLR", "POST", data)
 
-  def numberPortabilityLookup(self):
-    return
+  def numberPortabilityLookup(self, number):
+    """Performs a Number Portability lookup on a number. 
+    https://zironuk.atlassian.net/wiki/display/docs/Number+Portability+Lookup
+
+    Args:
+      number - The number to lookup. E164 format.
+    Method: POST
+    """
+    
+    data = {}
+
+    if self._check_e164(number): data['number'] = number
+
+    return self._request(self._base_url+"/Lookups/NP", "POST", data)
+
   def getLookups(self):
     return
   def getIndividualLookup(self):
