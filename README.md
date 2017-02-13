@@ -636,6 +636,27 @@ u'is_onnet': u'0', u'country_code': u'43', u'country_iso': u'AT',
 u'country_name': u'Austria'}, ...
 ```
 
+<a name="getStates"/>
+### getStates(*country_iso*)
+
+Retrieve a list of states within a country that have available numbers.
+> https://zironuk.atlassian.net/wiki/display/docs/Get+States
+
+**Arguments:**
+* Required:
+  * country_iso - Country in ISO 3166-1 alpha-2 format (e.g. GB)
+* Optional: None
+
+**Examples:**
+
+```python
+>>> numbering.getStates('GB')
+[{u'state_name': u'Alabama', u'state_abbr': u'AL', u'country_iso': u'US'}, {u'state_name': u'Alaska', u'state_abbr': u'AK', u'country_iso': u'US'}, 
+{u'state_name': u'Arizona', u'state_abbr': u'AZ', u'country_iso': u'US'}, {u'state_name': u'Arkansas', u'state_abbr': u'AR', u'country_iso': u'US'}, 
+{u'state_name': u'California', u'state_abbr': u'CA', u'country_iso': u'US'}, {u'state_name': u'Colorado', u'state_abbr': u'CO', u'country_iso': u'US'}, 
+{u'state_name': u'Connecticut', u'state_abbr': u'CT', u'country_iso': u'US'}, ...
+```
+
 ---
 <a name="payments"/>
 ## Payments
