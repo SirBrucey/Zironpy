@@ -5,28 +5,28 @@ class Numbering(Ziron):
   # https://zironuk.atlassian.net/wiki/display/docs/Numbering+API
 
   def getCountries(self):
-    return self.__request(self._base_url + "/Numbers/Available", "GET")
+    return self._request(self._base_url + "/Numbers/Available", "GET")
 
   def getStates(self, country_iso):
     self._check_code(country_iso)
-    return self.__request(self._base_url + "/Numbers/Available/" + country_iso,
+    return self._request(self._base_url + "/Numbers/Available/" + country_iso,
                           "GET")
 
   def getAreas(self, country_iso, state=None):
     self._check_code(country_iso)
     if state:
       self._check_code(country_iso)
-      return self.__request(self._base_url + "/Numbers/Available/" +
+      return self._request(self._base_url + "/Numbers/Available/" +
                             country_iso + "/" + state, "GET")
     else:
-      return self.__request(self._base_url + "/Numbers/Available/" +
+      return self._request(self._base_url + "/Numbers/Available/" +
                             country_iso, "GET")
 
   def getRestrictions(self, country_iso, number_type=None):
     """Add number_type variable
     """
     self._check_code(country_iso)
-    return self.__request(self._base_url + "/Numbers/Restrictions/" +
+    return self._request(self._base_url + "/Numbers/Restrictions/" +
                           country_iso, "GET")
 
   def listAvailableNumbers(self):
