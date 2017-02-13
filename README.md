@@ -33,6 +33,11 @@
     * [getlookups](#getLookups)
     * [getIndividualLookup](#getIndividualLookup)
   * [Numbering](#numbering)
+    * Available
+      * [getCountries](#getCountries)
+      * [getStates](#getStates)
+      * [getAreas](#getAreas)
+      * [getRestrictions](#getRestrictions)
   * [Payments](#payments)
   * [Pricing](#pricing)
   * [Resources](#resources)
@@ -599,6 +604,38 @@ u'gb'
 ---
 <a name="numbering"/>
 ## Numbering
+
+The numbering API allows for purchasing and managing number.
+>>> https://zironuk.atlassian.net/wiki/display/docs/Numbering+API
+
+**Import:**
+```python
+>>> from ziron import Numbering
+>>> numbering = numbering(sid, auth_token)
+```
+
+<a name="getCountries"/>
+### getCountries()
+
+Retrieve a list of countries.
+> https://zironuk.atlassian.net/wiki/display/docs/Get+Countries
+
+**Arguments:**
+* Required: None
+* Optional: None
+
+**Example:**
+
+```python
+>>> numbering.getCountries()
+[{u'restrictions': u'1', u'has_states': u'0', u'is_onnet': u'0', u'country_code': u'54',
+u'country_iso': u'AR', u'country_name': u'Argentina'}, {u'restrictions': u'0', 
+u'has_states': u'0', u'is_onnet': u'1', u'country_code': u'61', u'country_iso': u'AU', 
+u'country_name': u'Australia'}, {u'restrictions': u'0', u'has_states': u'0', 
+u'is_onnet': u'0', u'country_code': u'43', u'country_iso': u'AT', 
+u'country_name': u'Austria'}, ...
+```
+
 ---
 <a name="payments"/>
 ## Payments
