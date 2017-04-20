@@ -33,12 +33,13 @@
     * [getlookups](#getLookups)
     * [getIndividualLookup](#getIndividualLookup)
   * [Numbering](#numbering)
-    * Available
+    * [Available](#getCountries)
       * [getCountries](#getCountries)
       * [getStates](#getStates)
       * [getAreas](#getAreas)
       * [getRestrictions](#getRestrictions)
   * [Payments](#payments)
+  * [Porting](#porting)
   * [Pricing](#pricing)
   * [Resources](#resources)
   * [Transactions](#transactions)
@@ -48,7 +49,7 @@
 # TODO
 * Rewrite Pagination
 
-  Places currentluing pagination or will be later:
+  Places currently uing pagination or will be later:
     * [getCalls](#getCalls)
     * [getEndpoints](#getEndpoints)
     * [getMessages](#getMessages)
@@ -651,15 +652,39 @@ Retrieve a list of states within a country that have available numbers.
 
 ```python
 >>> numbering.getStates('GB')
-[{u'state_name': u'Alabama', u'state_abbr': u'AL', u'country_iso': u'US'}, {u'state_name': u'Alaska', u'state_abbr': u'AK', u'country_iso': u'US'}, 
-{u'state_name': u'Arizona', u'state_abbr': u'AZ', u'country_iso': u'US'}, {u'state_name': u'Arkansas', u'state_abbr': u'AR', u'country_iso': u'US'}, 
-{u'state_name': u'California', u'state_abbr': u'CA', u'country_iso': u'US'}, {u'state_name': u'Colorado', u'state_abbr': u'CO', u'country_iso': u'US'}, 
-{u'state_name': u'Connecticut', u'state_abbr': u'CT', u'country_iso': u'US'}, ...
+[{u'state_name': u'Alabama', u'state_abbr': u'AL', u'country_iso': u'US'}, 
+{u'state_name': u'Alaska', u'state_abbr': u'AK', u'country_iso': u'US'}, 
+{u'state_name': u'Arizona', u'state_abbr': u'AZ', u'country_iso': u'US'}, 
+{u'state_name': u'Arkansas', u'state_abbr': u'AR', u'country_iso': u'US'}, 
+{u'state_name': u'California', u'state_abbr': u'CA', u'country_iso': u'US'}, 
+{u'state_name': u'Colorado', u'state_abbr': u'CO', u'country_iso': u'US'}, 
+{u'state_name': u'Connecticut', u'state_abbr': u'CT', u'country_iso': u'US'}, 
+...
 ```
+<a name="getAreas"/>
+### getAreas(*country_iso*, *state*, *number_type*)
 
+Returns a list of numbering areas
+> https://zironuk.atlassian.net/wiki/display/docs/Get+Areas
+
+**Arguments:**
+* Required:
+  * country_iso -  Country in ISO 3166-1 alpha-2 format (e.g. GB)
+* Optional:
+  * state - ID of state, if the country has states
+  * number_typer - Type of number. Options: local, national, tollfree or mobile.
+
+**Examples:**
+
+```python
+
+```
 ---
 <a name="payments"/>
 ## Payments
+---
+<a name="porting"/>
+## Porting
 ---
 <a name="pricing"/>
 ## Pricing
