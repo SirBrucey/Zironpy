@@ -6,6 +6,7 @@ from .nrl import NumberRangeLookups
 from .messages import Messages
 from .numbering import Numbering
 from .payments import Payments
+from .porting import Porting
 from .pricing import Pricing
 from .resources import Resources
 from .trunks import Trunks
