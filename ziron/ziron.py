@@ -155,3 +155,8 @@ class Ziron(object):
       raise ValueError(error)
     return True
 
+  def _check_sid(self, sid):
+    if not re.match('^[a-zA-Z0-9]{34}$', sid):
+      raise ValueError('Invalid sid')
+    return True
+
