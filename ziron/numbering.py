@@ -12,15 +12,20 @@ class Numbering(Ziron):
     return self._request(self._base_url + "/Numbers/Available/" + country_iso,
                           "GET")
 
-  def getAreas(self, country_iso, state=None):
+  def getAreas(self, country_iso, state=None, number_type=None):
     self._check_code(country_iso)
+    url = self._base_url + "/Numbers/Available/" + country_iso
     if state:
-      self._check_code(country_iso)
-      return self._request(self._base_url + "/Numbers/Available/" +
-                            country_iso + "/" + state, "GET")
-    else:
-      return self._request(self._base_url + "/Numbers/Available/" +
-                            country_iso, "GET")
+      self._check_code(state)
+      url = url + "/" + state
+    if number_type:
+      if number_type not in ['local', 'national', 'tollfree', 'mobile']:
+        raise ValueError("Invalid number type. Please check documentation")
+      else:
+        url = url + "?number_type=" + number_type
+
+
+    return self._request(url, "GET")
 
   def getRestrictions(self, country_iso, number_type=None):
     """Add number_type variable
