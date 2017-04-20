@@ -40,6 +40,16 @@
       * [getRestrictions](#getRestrictions)
   * [Payments](#payments)
   * [Porting](#porting)
+    * [Porting Countries](#getIndividualPortingCountry)
+      *[getIndividualPortingCountry](#getIndividualPortingCountry)
+      *[getPortingCountries](#getPortingCountries)
+      *[getPortingOperators](#getPortingOperators)
+    * [Porting Requests](#createPortingRequest)
+      *[createPortingRequest](#createPortingRequest)
+      *[getIndividualPortingRequest](#getIndividualPortingRequest)
+      *[getPortingRequestEvents](#getPortingRequestEvents)
+      *[getPortingRequests](#getPortingRequests)
+      *[submitPortingRequest](#submitPortingRequest)
   * [Pricing](#pricing)
   * [Resources](#resources)
   * [Transactions](#transactions)
@@ -685,6 +695,175 @@ Returns a list of numbering areas
 ---
 <a name="porting"/>
 ## Porting
+
+The Porting API allows you to interact with the Number Porting system to check 
+portability coverage, create porting requests and letters of authority (LOAs).
+> https://zironuk.atlassian.net/wiki/display/docs/Porting+API
+
+**Import:**
+```python
+>>> from ziron import Porting
+>>> porting = porting(sid, auth_token)
+```
+
+<a name="getIndividualPortingCountry"/>
+### getIndividualPortingCountry(*country_iso*)
+
+Retrieve details of an individual country where numbers can be ported
+> https://zironuk.atlassian.net/wiki/display/docs/Get+Individual+Porting+Country
+
+**Arguments**
+* Required:
+  * country_iso - Country in ISO 3166-1 alpha-2 format (e.g. GB)
+* Optional: None
+  
+**Examples:**
+  
+```python
+>>> porting.getIndividualPortingCountry("GB")
+[{u'require_authorisation_code': u'0', u'require_loa': u'1', 
+  u'require_account_number': u'0', u'require_address': u'1', 
+  u'lead_time': u'21', u'port_type': u'multi', u'number_type': u'local'}, 
+ {u'require_authorisation_code': u'0', u'require_loa': u'1', 
+  u'require_account_number': u'0', u'require_address': u'1', 
+  u'lead_time': u'4', u'port_type': u'single', u'number_type': u'local'}, 
+ {u'require_authorisation_code': u'1', u'require_loa': u'0', 
+  u'require_account_number': u'0', u'require_address': u'0', 
+  u'lead_time': u'2', u'port_type': u'consumer', u'number_type': u'mobile'}]
+```
+
+<a name="getPortingCountries"/>
+### getPortingCountries()
+
+Retrieve a list of countries where numbers can be ported
+> https://zironuk.atlassian.net/wiki/display/docs/Get+Porting+Countries
+
+**Arguments:**
+* Required: None
+* Optional: None
+
+**Examples:**
+
+```python
+>>> porting.getPortingCountries()
+[{u'country_name': u'United Kingdom', u'country_iso': u'GB'}]
+```
+
+<a name="getPortingOperators"/>
+### getPortingOperators(*country_iso*, *number_type*)
+
+Returns a list of operators that numbers can be ported from.
+> https://zironuk.atlassian.net/wiki/display/docs/Get+Porting+Operators
+
+**Arguments**
+* Required: 
+  * country_iso -  Country in ISO 3166-1 alpha-2 format (e.g. GB)
+* Optional:
+  *  number_typer - Type of number. Options: local, national, tollfree or mobile
+
+**Examples:**
+
+```python
+>>> porting.getPortingOperators("GB", "local")
+[{u'restrictions': None, u'sid': u'POd7a13bbc6255356dc5a0223a4feed4eb', 
+  u'operator_name': u'(aq) Limited trading as aql', u'number_type': u'local', 
+  u'country_iso': u'gb', u'operator_aliases': None}, 
+ {u'restrictions': None, u'sid': u'PO507c40de904498be83e975988e603018', 
+  u'operator_name': u'Affiniti Integrated Solutions Ltd', u'number_type': 
+  u'local', u'country_iso': u'gb', u'operator_aliases': None}, 
+ {u'restrictions': None, u'sid': u'PO3468637336fdd961be86908508846ed3', 
+  u'operator_name': u'aql Wholesale Limited', u'number_type': u'local', 
+  u'country_iso': u'gb', u'operator_aliases': None}, 
+ {u'restrictions': None, u'sid': u'POe6c9a98c6e55d431f97968bed72aaa11', 
+  u'operator_name': u'BT', u'number_type': u'local', u'country_iso': u'gb', 
+  u'operator_aliases': None}, 
+ ...
+]
+```
+<a name="createPortingRequest"/>
+### createPortingRequest()
+
+<a name="getIndividualPortingRequest"/>
+### getIndividualPortingRequest(*porting_sid*)
+
+Returns an individual porting request
+> https://zironuk.atlassian.net/wiki/display/docs/Get+Individual+Porting+Request
+
+**Arguments:**
+* Required:
+  * porting_sid - sid for the port you wish to return details on.
+* Optional: None
+
+**Examples:**
+```python
+>>> porting.getIndividualPortingRequest('xxxxxx')
+{u'status': u'completed', u'ticket_id': u'4021', 
+ u'porting_operator_sid': u'xxxxxx', u'ts_modified': u'2016-11-29T13:43:03Z', 
+ u'description': u'UK Mobile', u'port_date': u'2016-11-29', 
+ u'billing_number': u'44xxxxxxxxxx', u'loa_sid': None, 
+ u'sid': u'xxxxx', u'can_cancel': u'0', u'account_number': None, 
+ u'port_type': u'consumer', u'address_sid': None, u'country_iso': u'gb', 
+ u'number_sid': None, u'ts_created': u'2016-11-28T16:44:00Z', u'email': None, 
+ u'number_type': u'mobile'}
+```
+
+<a name="getPortingRequestEvents"/>
+### getPortingRequestEvents()
+
+Returns an unpaginated list of porting request events. 
+> https://zironuk.atlassian.net/wiki/display/docs/Get+Porting+Request+Events
+
+**Arguments:**
+* Required: 
+  * porting_sid - sid for the port you wish to return details on.
+* Optional: None
+
+**Examples:**
+```python
+porting.getPortingRequestEvents('xxxxx')
+[{u'status': u'received', u'reason': None, u'reason_code': None, 
+  u'ts': u'2016-11-28T16:44:00Z'}, 
+ {u'status': u'submitted', u'reason': None, u'reason_code': None, 
+  u'ts': u'2016-11-28T16:51:00Z'}, 
+ {u'status': u'accepted', u'reason': None, u'reason_code': None, 
+  u'ts': u'2016-11-28T21:09:17Z'}, 
+ {u'status': u'accepted', u'reason': None, u'reason_code': None, 
+  u'ts': u'2016-11-28T23:28:50Z'}, 
+ {u'status': u'accepted', u'reason': None, u'reason_code': None, 
+  u'ts': u'2016-11-28T23:57:29Z'}, 
+ {u'status': u'completed', u'reason': None, u'reason_code': None, 
+  u'ts': u'2016-11-29T13:43:03Z'}]
+```
+
+<a name="getPortingRequests"/>
+### getPortingRequests()
+
+Returns a paginated list of porting requests
+> https://zironuk.atlassian.net/wiki/display/docs/Get+Porting+Requests
+
+**Arguments:**
+* Required: None
+* Optional:
+  * limit - Either 1-100 or "all", limit the number number of results returned.
+  * start - Datetime in the form YYYY-MM-DD HH-MM-SS to signify the start of the daterange you wish to return.
+  * end - Datetime in the form YYYY-MM-DD HH-MM-SS to signify the end of the daterange you wish to return.
+
+**Examples:**
+```python
+>>> porting.getPortingRequests(limit=1)
+[{u'status': u'submitted', u'ticket_id': u'4690', 
+  u'porting_operator_sid': u'xxxxx', u'ts_modified': u'2017-04-19T20:56:16Z', 
+  u'description': u'xxxxx', u'port_date': u'2017-04-21', 
+  u'billing_number': u'xxxxxxxxxxxx', u'loa_sid': None, 
+  u'sid': u'xxxxx', u'can_cancel': u'0', u'account_number': None, 
+  u'port_type': u'consumer', u'address_sid': None, u'country_iso': u'gb', 
+  u'number_sid': None, u'ts_created': u'2017-04-19T20:52:32Z', 
+  u'email': u'user@domain', u'number_type': u'mobile'}]
+```
+
+<a name="submitPortingRequest"/>
+### submitPortingRequest()
+
 ---
 <a name="pricing"/>
 ## Pricing
