@@ -66,6 +66,7 @@ class Messages(Ziron):
       message_sid - Individual sid for the message you with to retrieve information on.
       key         - Retunrn specific value based on given key.
     """
+    self._check_sid(message_sid)
     if not key:
       return self._request(self._base_url+"/Messages/"+message_sid, "GET")
     else:
@@ -78,7 +79,7 @@ class Messages(Ziron):
       message_sid - Unique ID for the message you wish to retrieve the message history 
                     for.
     """
-
+    self._check_sid(message_sid)
     return self._request(self._base_url+"/Messages/"+message_sid+"/History", "GET")
 
   def messageDeliveryStats(self):

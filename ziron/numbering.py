@@ -75,6 +75,7 @@ class Numbering(Ziron):
     Args:
       number_sid - ID of individual number. Can be found using getNumbers.
     """
+    self._check_sid(number_sid)
     return self.__request(self._base_url + "/Numbers/Assigned/" + number_sid,
                           "DELETE")
 

@@ -36,6 +36,7 @@ class Endpoints(Ziron):
     Args:
       endpoint_sid - Unique sid for the endpoint you wish to delete
     """
+    self._check_sid(endpoint_sid)
     return self._request(self._base_url+"/Endpoints/"+endpoint_sid, "DELETE")
 
   def getEndpoints(self, limit=None, start=None, end=None):
@@ -112,7 +113,7 @@ class Endpoints(Ziron):
       default       - Update whether or not this should be the default endpoint for new
                       numbers.
     """
-
+    self.check_sid(sid)
     data = {}
     if (default) and (default != 0):
       data['default'] = 1

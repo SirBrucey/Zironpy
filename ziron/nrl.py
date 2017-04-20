@@ -51,6 +51,7 @@ class NumberRangeLookups(Ziron):
       lookup_sid - Individual sid for the endpoint you with to retrieve information on.
       key        - Retunrn specific value based on given key.
     """
+    self._check_sid(lookup_sid)
     if not key:
       return self._request(self._base_url+"/Lookups/"+lookup_sid, "GET")
     else:
